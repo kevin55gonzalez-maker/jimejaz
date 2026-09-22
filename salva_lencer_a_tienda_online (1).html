@@ -1,0 +1,956 @@
+[cite: 1]<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salva Lencería - Tienda Online</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#fdf2f4',
+                            DEFAULT: '#f4b8c5',
+                            dark: '#d9889b',
+                            accent: '#6b3843',
+                            pinksoft: '#fff0f3'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f4b8c5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d9889b;
+        }
+    </style>
+</head>
+<body class="bg-brand-light/40 text-gray-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <div class="bg-brand-accent text-white text-xs md:text-sm py-2 px-4 text-center font-medium tracking-wide">
+        <span>✨ Envío a todo el país • Encontrá tu lencería ideal ✨</span>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-pink-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+                    S
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl sm:text-2xl font-bold tracking-wider text-gray-900 font-serif">SALVA</span>
+                    <span class="text-[10px] tracking-widest text-brand-dark uppercase font-semibold">Lencería</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+                <a href="#catalogo" class="hover:text-brand-dark transition-colors">Catálogo</a>
+                <a href="#categorias" class="hover:text-brand-dark transition-colors">Categorías</a>
+                <a href="#nosotras" class="hover:text-brand-dark transition-colors">Sobre Nosotras</a>
+                <a href="#contacto" class="hover:text-brand-dark transition-colors">Contacto</a>
+            </nav>
+
+            <!-- Actions (Cart & Admin Login) -->
+            <div class="flex items-center gap-3">
+                <button onclick="openCart()" class="relative bg-brand-pinksoft text-brand-dark hover:bg-brand hover:text-white p-3 rounded-full transition-all shadow-sm flex items-center justify-center" aria-label="Abrir Carrito">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cart-counter" class="absolute -top-1 -right-1 bg-brand-accent text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                </button>
+                <button onclick="openAdminModal()" class="bg-gray-100 hover:bg-brand hover:text-white text-gray-700 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 shadow-sm" title="Panel de Gestión Admin">
+                    <i class="fa-solid fa-lock text-brand-dark"></i>
+                    <span class="hidden sm:inline">Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative bg-gradient-to-b from-brand-pinksoft/60 to-white py-16 md:py-24 px-4 overflow-hidden border-b border-pink-100">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-brand text-brand-accent text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full mb-6 shadow-sm">
+                Temporada de verano
+            </span>
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 font-serif tracking-tight mb-6 leading-tight">
+                El rincón de tu lenceria favorita
+            </h1>
+            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+                Hola bienvenidas a salva lenceria, estas en el catalogo perfecto para vos, volvete irresistible con nuestras prendas, te invitamos a sentirte linda comoda y autentica.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#catalogo" class="w-full sm:w-auto bg-gray-900 hover:bg-brand-accent text-white font-medium px-8 py-3.5 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5 text-center">
+                    Ver Catálogo Completo
+                </a>
+                <a href="#categorias" class="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 font-medium px-8 py-3.5 rounded-full shadow-sm transition-all text-center">
+                    Explorar Categorías
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="categorias" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl sm:text-3xl font-bold font-serif text-gray-900">Nuestras Categorías</h2>
+            <p class="text-gray-500 text-sm mt-1">Diseñadas para cada momento de tu día</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Category 1 -->
+            <a href="#catalogo" onclick="filterByCategory('conjuntos')" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer h-72 bg-gray-900 block">
+                <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80" alt="Conjuntos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" onerror="this.src='https://placehold.co/600x800/222/fff?text=Conjuntos'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs uppercase tracking-widest text-brand font-semibold mb-1">Colección Destacada</span>
+                    <h3 class="text-xl font-bold font-serif">Conjuntos</h3>
+                    <p class="text-xs text-gray-300 mt-1">Pijamas / Tops-Conjuntos Deportivos</p>
+                </div>
+            </a>
+            <!-- Category 2 -->
+            <a href="#catalogo" onclick="filterByCategory('corpiños')" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer h-72 bg-gray-900 block">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80" alt="Corpiños" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" onerror="this.src='https://placehold.co/600x800/222/fff?text=Corpiños'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs uppercase tracking-widest text-brand font-semibold mb-1">Confort & Soporte</span>
+                    <h3 class="text-xl font-bold font-serif">Corpiños</h3>
+                    <p class="text-xs text-gray-300 mt-1">Bralettes / Conjuntos Push-up / Triangulos</p>
+                </div>
+            </a>
+            <!-- Category 3 -->
+            <a href="#catalogo" onclick="filterByCategory('bombachas')" class="group relative rounded-2xl overflow-hidden shadow-md cursor-pointer h-72 bg-gray-900 block">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Bombachas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" onerror="this.src='https://placehold.co/600x800/222/fff?text=Bombachas'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs uppercase tracking-widest text-brand font-semibold mb-1">Suavidad Absoluta</span>
+                    <h3 class="text-xl font-bold font-serif">Bombachas</h3>
+                    <p class="text-xs text-gray-300 mt-1">Vedetinas, colaless y culottes</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-bold font-serif text-gray-900">Catálogo de Productos</h2>
+                <p class="text-gray-500 text-sm mt-1">Elegí tu prenda favorita y seleccioná tu talle</p>
+            </div>
+            <!-- Category Filters -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterByCategory('todos')" id="filter-todos" class="px-4 py-2 text-xs font-semibold rounded-full bg-gray-900 text-white transition-all shadow-sm">Todos</button>
+                <button onclick="filterByCategory('conjuntos')" id="filter-conjuntos" class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition-all">Conjuntos</button>
+                <button onclick="filterByCategory('corpiños')" id="filter-corpiños" class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition-all">Corpiños</button>
+                <button onclick="filterByCategory('bombachas')" id="filter-bombachas" class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition-all">Bombachas</button>
+            </div>
+        </div>
+
+        <!-- Product Grid Container -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+    </section>
+
+    <section id="nosotras" class="bg-white border-y border-pink-100 py-16 px-4 my-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="p-6 rounded-2xl bg-brand-light/30">
+                <div class="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg shadow-sm">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2 font-serif">Envíos a Todo el País</h3>
+                <p class="text-xs text-gray-600">Recibí tu pedido de manera segura y rápida en la puerta de tu casa.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-brand-light/30">
+                <div class="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg shadow-sm">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2 font-serif">Calidad Premium</h3>
+                <p class="text-xs text-gray-600">Encajes suaves y delicados diseñados para acompañarte en cada momento.</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-brand-light/30">
+                <div class="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg shadow-sm">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2 font-serif">Compra Segura</h3>
+                <p class="text-xs text-gray-600">Atención personalizada y asesoramiento directo a través de nuestro WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto" class="bg-gray-900 text-gray-300 pt-16 pb-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center text-white font-bold text-sm">
+                        S
+                    </div>
+                    <span class="text-lg font-bold tracking-wider text-white font-serif">SALVA</span>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Lencería diseñada para hacerte sentir única, cómoda y auténtica en cada instante.
+                </p>
+            </div>
+            <div>
+                <h5 class="font-semibold text-sm mb-4 text-brand-light">Categorías</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#catalogo" onclick="filterByCategory('conjuntos')" class="hover:text-brand transition-colors">Conjuntos</a></li>
+                    <li><a href="#catalogo" onclick="filterByCategory('corpiños')" class="hover:text-brand transition-colors">Corpiños</a></li>
+                    <li><a href="#catalogo" onclick="filterByCategory('bombachas')" class="hover:text-brand transition-colors">Bombachas</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-semibold text-sm mb-4 text-brand-light">Atención al Cliente</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="https://wa.me/5492494240296?text=Hola,%20necesito%20realizar%20un%20cambio%20o%20devolución" target="_blank" class="hover:text-brand transition-colors">Cambios y devoluciones</a></li>
+                    <li><a href="https://wa.me/5492494240296?text=Hola,%20quiero%20consultar%20el%20seguimiento%20de%20mi%20envío" target="_blank" class="hover:text-brand transition-colors">Seguimiento de envíos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-semibold text-sm mb-4 text-brand-light">Seguinos</h5>
+                <div class="flex gap-3 text-lg">
+                    <a href="https://www.instagram.com/lenceria.salva?utm_source=qr&stkn=MWRnNzRkOGI4MDdpOA%3D%3D" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-dark transition-colors text-white" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/5492494240296" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-dark transition-colors text-white" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+            &copy; 2026 Salva Lencería. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="closeCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-xl flex flex-col justify-between">
+                <!-- Cart Header -->
+                <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                    <h2 class="text-lg font-bold font-serif text-gray-900" id="slide-over-title">Carrito</h2>
+                    <button onclick="closeCart()" class="text-gray-400 hover:text-gray-600 p-2 rounded-full"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <!-- Cart Items List -->
+                <div id="cart-items-container" class="p-6 flex-1 overflow-y-auto space-y-4 divide-y divide-gray-100">
+                    <!-- Populated dynamically -->
+                </div>
+                <!-- Cart Footer -->
+                <div class="p-6 border-t border-gray-100 bg-gray-50 space-y-3">
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>Envío estimado (Consultar envío)</span>
+                        <span class="font-medium text-gray-800">A coordinar</span>
+                    </div>
+                    <div class="flex justify-between text-base font-bold text-gray-900">
+                        <span>Total</span>
+                        <span id="cart-total-price">$0</span>
+                    </div>
+                    <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Iniciar Compra por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-brand text-3xl p-2 z-10" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="prevLightboxImage()" class="absolute left-4 md:left-8 text-white hover:text-brand text-2xl md:text-3xl p-3 bg-black/50 rounded-full z-10"><i class="fa-solid fa-chevron-left"></i></button>
+        <button onclick="nextLightboxImage()" class="absolute right-4 md:right-8 text-white hover:text-brand text-2xl md:text-3xl p-3 bg-black/50 rounded-full z-10"><i class="fa-solid fa-chevron-right"></i></button>
+        
+        <div class="max-w-4xl max-h-[85vh] flex flex-col items-center justify-center">
+            <img id="lightbox-img" src="" alt="Ampliada" class="max-h-[70vh] max-w-full object-contain rounded-lg shadow-2xl">
+            <div id="lightbox-thumbnails" class="flex gap-2 mt-4 overflow-x-auto max-w-full p-2">
+                <!-- Thumbnails populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-login-modal" class="fixed inset-0 z-50 overflow-hidden hidden flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 relative">
+            <button onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-brand-light text-brand-dark rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-lg font-bold font-serif text-gray-900">Acceso Administrador</h3>
+                <p class="text-xs text-gray-500 mt-1">Ingresá tu clave para gestionar la tienda</p>
+            </div>
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Contraseña</label>
+                    <input type="password" id="admin-pass-input" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-dark">
+                </div>
+                <button type="submit" class="w-full bg-gray-900 hover:bg-brand-accent text-white font-medium py-3 rounded-xl text-sm shadow-md transition-all">
+                    Ingresar al Panel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="admin-panel-modal" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeAdminPanel()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-3xl w-full bg-white shadow-2xl flex flex-col justify-between">
+            <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-900 text-white">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-brand"></i>
+                    <h2 class="text-lg font-bold font-serif">Panel de Gestión Salva</h2>
+                </div>
+                <button onclick="closeAdminPanel()" class="text-gray-400 hover:text-white p-2 rounded-full"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="p-6 flex-1 overflow-y-auto space-y-8 bg-gray-50">
+                <!-- Add New Product Form -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-plus-circle text-brand-dark"></i> Publicar Nuevo Producto
+                    </h3>
+                    <form onsubmit="handleAddProduct(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Nombre de la Prenda</label>
+                                <input type="text" id="new-prod-name" required placeholder="Ej: Conjunto Valentina Encaje" class="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-dark">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Categoría</label>
+                                <select id="new-prod-cat" class="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-dark bg-white">
+                                    <option value="conjuntos">Conjuntos</option>
+                                    <option value="corpiños">Corpiños</option>
+                                    <option value="bombachas">Bombachas</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Precio ($ARS)</label>
+                                <input type="number" id="new-prod-price" required placeholder="Ej: 14900" class="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-dark">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">Fotos (Seleccioná una o varias)</label>
+                                <input type="file" id="new-prod-files" accept="image/*" multiple required class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-light file:text-brand-dark hover:file:bg-brand/30 cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- Sizes & Stock Configuration -->
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <label class="block text-xs font-bold text-gray-800 mb-2">Talles disponibles y Stock por Talle:</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                                <div class="bg-white p-2.5 rounded-lg border border-gray-200 flex flex-col gap-1">
+                                    <label class="font-medium text-gray-700 flex items-center gap-1.5"><input type="checkbox" value="85" class="size-checkbox text-brand focus:ring-brand" onchange="toggleSizeInput('85')"> Talle 85</label>
+                                    <input type="number" id="stock-input-85" min="0" value="5" placeholder="Stock" disabled class="w-full px-2 py-1 text-xs border rounded disabled:bg-gray-100">
+                                </div>
+                                <div class="bg-white p-2.5 rounded-lg border border-gray-200 flex flex-col gap-1">
+                                    <label class="font-medium text-gray-700 flex items-center gap-1.5"><input type="checkbox" value="90" class="size-checkbox text-brand focus:ring-brand" onchange="toggleSizeInput('90')"> Talle 90</label>
+                                    <input type="number" id="stock-input-90" min="0" value="5" placeholder="Stock" disabled class="w-full px-2 py-1 text-xs border rounded disabled:bg-gray-100">
+                                </div>
+                                <div class="bg-white p-2.5 rounded-lg border border-gray-200 flex flex-col gap-1">
+                                    <label class="font-medium text-gray-700 flex items-center gap-1.5"><input type="checkbox" value="95" class="size-checkbox text-brand focus:ring-brand" onchange="toggleSizeInput('95')"> Talle 95</label>
+                                    <input type="number" id="stock-input-95" min="0" value="5" placeholder="Stock" disabled class="w-full px-2 py-1 text-xs border rounded disabled:bg-gray-100">
+                                </div>
+                                <div class="bg-white p-2.5 rounded-lg border border-gray-200 flex flex-col gap-1">
+                                    <label class="font-medium text-gray-700 flex items-center gap-1.5"><input type="checkbox" value="100" class="size-checkbox text-brand focus:ring-brand" onchange="toggleSizeInput('100')"> Talle 100</label>
+                                    <input type="number" id="stock-input-100" min="0" value="5" placeholder="Stock" disabled class="w-full px-2 py-1 text-xs border rounded disabled:bg-gray-100">
+                                </div>
+                                <div class="bg-white p-2.5 rounded-lg border border-gray-200 flex flex-col gap-1">
+                                    <label class="font-medium text-gray-700 flex items-center gap-1.5"><input type="checkbox" value="105" class="size-checkbox text-brand focus:ring-brand" onchange="toggleSizeInput('105')"> Talle 105</label>
+                                    <input type="number" id="stock-input-105" min="0" value="5" placeholder="Stock" disabled class="w-full px-2 py-1 text-xs border rounded disabled:bg-gray-100">
+                                </div>
+                                <div class="bg-white p-2.5 rounded-lg border border-gray-200 flex flex-col gap-1">
+                                    <label class="font-medium text-gray-700 flex items-center gap-1.5"><input type="checkbox" value="Único" class="size-checkbox text-brand focus:ring-brand" onchange="toggleSizeInput('Único')"> Talle Único</label>
+                                    <input type="number" id="stock-input-Único" min="0" value="5" placeholder="Stock" disabled class="w-full px-2 py-1 text-xs border rounded disabled:bg-gray-100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">Descripción corta</label>
+                            <input type="text" id="new-prod-desc" required placeholder="Ej: Encaje suave importado con reguladores" class="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-dark">
+                        </div>
+                        <button type="submit" class="w-full bg-brand-dark hover:bg-brand-accent text-white font-medium py-3 rounded-xl text-sm shadow-sm transition-all">
+                            Publicar Prenda en el Catálogo
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Existing Products Management -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-900 mb-4">Prendas Publicadas & Gestión de Stock</h3>
+                    <div id="admin-products-list" class="space-y-3">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="fixed inset-0 z-50 overflow-hidden hidden flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 relative text-center">
+            <div class="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-lg font-bold font-serif text-gray-900 mb-2">Eliminar Prenda</h3>
+            <p id="confirm-modal-text" class="text-xs text-gray-500 mb-6">¿Estás segura de que querés eliminar esta prenda del catálogo?</p>
+            <div class="flex gap-3">
+                <button onclick="closeConfirmModal(false)" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 rounded-xl text-xs transition-all">Cancelar</button>
+                <button id="confirm-modal-yes-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 rounded-xl text-xs shadow-md transition-all">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentCategory = 'todos';
+        let cart = [];
+        let activeLightboxImages = [];
+        let activeLightboxIndex = 0;
+        let pendingDeleteId = null;
+
+        // Default store items if none in localStorage
+        const defaultProducts = [
+            {
+                id: 1,
+                name: "Conjunto Celeste Renta",
+                category: "conjuntos",
+                price: 18500,
+                desc: "Conjunto de encaje premium con detalles satinados.",
+                images: [
+                    "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80"
+                ],
+                sizes: {
+                    "85": { available: true, stock: 4 },
+                    "90": { available: true, stock: 7 },
+                    "95": { available: true, stock: 2 }
+                }
+            },
+            {
+                id: 2,
+                name: "Bralette Soft Romántico",
+                category: "corpiños",
+                price: 12400,
+                desc: "Bralette sin aro ultra cómodo con breteles regulables.",
+                images: [
+                    "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80"
+                ],
+                sizes: {
+                    "85": { available: true, stock: 6 },
+                    "90": { available: true, stock: 5 },
+                    "95": { available: true, stock: 8 },
+                    "100": { available: true, stock: 3 }
+                }
+            },
+            {
+                id: 3,
+                name: "Bombacha Vedetina Encaje",
+                category: "bombachas",
+                price: 6500,
+                desc: "Vedetina tiro medio con terminaciones invisibles.",
+                images: [
+                    "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80"
+                ],
+                sizes: {
+                    "Único": { available: true, stock: 12 },
+                    "90": { available: true, stock: 5 },
+                    "95": { available: true, stock: 7 }
+                }
+            }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('salva_products')) || defaultProducts;
+
+        function saveProducts() {
+            localStorage.setItem('salva_products', JSON.stringify(products));
+        }
+
+        function renderCatalog() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filtered = currentCategory === 'todos' 
+                ? products 
+                : products.filter(p => p.category === currentCategory);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-gray-400">
+                        <i class="fa-solid fa-shirt text-4xl mb-3 text-brand"></i>
+                        <p class="text-sm">No hay prendas disponibles en esta categoría por el momento.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(product => {
+                const availableSizes = Object.keys(product.sizes);
+                const firstSize = availableSizes[0] || '';
+                const currentStock = firstSize ? product.sizes[firstSize].stock : 0;
+
+                let imagesHtml = '';
+                product.images.forEach((img, idx) => {
+                    imagesHtml += `<img src="${img}" alt="${product.name}" class="w-full h-80 object-cover absolute inset-0 transition-opacity duration-300 ${idx === 0 ? 'opacity-100' : 'opacity-0'}" data-img-idx="${idx}" onerror="this.src='https://placehold.co/600x800/fdf2f4/6b3843?text=Salva+Lencería'">`;
+                });
+
+                let sizeOptionsHtml = '';
+                availableSizes.forEach(sz => {
+                    sizeOptionsHtml += `<option value="${sz}">${sz} (Stock: ${product.sizes[sz].stock})</option>`;
+                });
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden flex flex-col justify-between group";
+                card.innerHTML = `
+                    <div class="relative h-80 overflow-hidden bg-brand-light cursor-pointer" onclick="openLightbox(${product.id})">
+                        ${imagesHtml}
+                        <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-brand-dark text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                            ${product.category}
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-black/60 text-white text-[10px] px-2.5 py-1 rounded-full backdrop-blur-sm">
+                            <i class="fa-regular fa-images"></i> ${product.images.length} fotos
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-gray-900 font-serif text-lg mb-1">${product.name}</h3>
+                            <p class="text-xs text-gray-500 mb-4 line-clamp-2">${product.desc}</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-extrabold text-gray-900">$${product.price.toLocaleString()}</span>
+                                <div class="text-xs font-medium text-gray-600">
+                                    Talle: <select id="size-select-${product.id}" onchange="updateCardStock(${product.id})" class="ml-1 px-2 py-1 rounded border border-gray-200 text-xs font-semibold bg-gray-50 focus:outline-none">
+                                        ${sizeOptionsHtml}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-xs text-gray-500 pt-1 border-t border-gray-100">
+                                <span id="stock-label-${product.id}">Stock disponible: <strong class="text-gray-800">${currentStock}</strong></span>
+                            </div>
+                            <button onclick="addToCart(${product.id})" id="add-btn-${product.id}" class="w-full bg-gray-900 hover:bg-brand-accent text-white font-medium py-2.5 rounded-xl text-xs shadow-sm transition-all flex items-center justify-center gap-2 ${currentStock <= 0 ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' : ''}">
+                                <i class="fa-solid fa-bag-shopping"></i> Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function updateCardStock(productId) {
+            const product = products.find(p => p.id === productId);
+            const select = document.getElementById(`size-select-${productId}`);
+            const selectedSize = select.value;
+            const stock = product.sizes[selectedSize] ? product.sizes[selectedSize].stock : 0;
+            
+            document.getElementById(`stock-label-${productId}`).innerHTML = `Stock disponible: <strong class="text-gray-800">${stock}</strong>`;
+            const btn = document.getElementById(`add-btn-${productId}`);
+            if (stock <= 0) {
+                btn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
+                btn.classList.remove('bg-gray-900', 'hover:bg-brand-accent');
+            } else {
+                btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
+                btn.classList.add('bg-gray-900', 'hover:bg-brand-accent');
+            }
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            ['todos', 'conjuntos', 'corpiños', 'bombachas'].forEach(cat => {
+                const btn = document.getElementById(`filter-${cat}`);
+                if (btn) {
+                    if (cat === category) {
+                        btn.className = "px-4 py-2 text-xs font-semibold rounded-full bg-gray-900 text-white transition-all shadow-sm";
+                    } else {
+                        btn.className = "px-4 py-2 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition-all";
+                    }
+                }
+            });
+            renderCatalog();
+        }
+
+        function openLightbox(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product || !product.images.length) return;
+            activeLightboxImages = product.images;
+            activeLightboxIndex = 0;
+            updateLightboxView();
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        function updateLightboxView() {
+            const imgEl = document.getElementById('lightbox-img');
+            imgEl.src = activeLightboxImages[activeLightboxIndex];
+
+            const thumbContainer = document.getElementById('lightbox-thumbnails');
+            thumbContainer.innerHTML = '';
+            activeLightboxImages.forEach((img, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = img;
+                thumb.className = `w-16 h-16 object-cover rounded-md cursor-pointer border-2 transition-all ${idx === activeLightboxIndex ? 'border-brand scale-105' : 'border-transparent opacity-60'}`;
+                thumb.onclick = () => {
+                    activeLightboxIndex = idx;
+                    updateLightboxView();
+                };
+                thumbContainer.appendChild(thumb);
+            });
+        }
+
+        function prevLightboxImage() {
+            activeLightboxIndex = (activeLightboxIndex - 1 + activeLightboxImages.length) % activeLightboxImages.length;
+            updateLightboxView();
+        }
+
+        function nextLightboxImage() {
+            activeLightboxIndex = (activeLightboxIndex + 1) % activeLightboxImages.length;
+            updateLightboxView();
+        }
+
+        function openCart() {
+            document.getElementById('cart-drawer').classList.remove('hidden');
+            renderCart();
+        }
+
+        function closeCart() {
+            document.getElementById('cart-drawer').classList.add('hidden');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const sizeSelect = document.getElementById(`size-select-${productId}`);
+            const selectedSize = sizeSelect ? sizeSelect.value : Object.keys(product.sizes)[0];
+
+            if (!product.sizes[selectedSize] || product.sizes[selectedSize].stock <= 0) {
+                alertCustom('Lo sentimos, este talle no cuenta con stock disponible en este momento.');
+                return;
+            }
+
+            const existingItem = cart.find(item => item.id === productId && item.size === selectedSize);
+            if (existingItem) {
+                if (existingItem.quantity < product.sizes[selectedSize].stock) {
+                    existingItem.quantity++;
+                } else {
+                    alertCustom('Has alcanzado el límite de stock disponible para este talle.');
+                    return;
+                }
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.images[0],
+                    size: selectedSize,
+                    quantity: 1
+                });
+            }
+
+            updateCartBadge();
+            alertCustom('¡Prenda agregada al carrito!');
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-counter').innerText = totalItems;
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center text-gray-400">
+                        <i class="fa-solid fa-bag-shopping text-3xl mb-2 text-brand"></i>
+                        <p class="text-xs">Tu carrito está vacío.</p>
+                    </div>
+                `;
+                document.getElementById('cart-total-price').innerText = '$0';
+                return;
+            }
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "flex items-center gap-4 py-4";
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl bg-brand-light">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-gray-900 font-serif">${item.name}</h4>
+                        <p class="text-xs text-gray-500">Talle: <span class="font-semibold text-gray-700">${item.size}</span></p>
+                        <p class="text-xs font-bold text-gray-900 mt-1">$${(item.price * item.quantity).toLocaleString()}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeQuantity(${index}, -1)" class="w-7 h-7 rounded-lg bg-gray-100 flex items-center justify-center text-xs font-bold hover:bg-gray-200">-</button>
+                        <span class="text-xs font-semibold w-5 text-center">${item.quantity}</span>
+                        <button onclick="changeQuantity(${index}, 1)" class="w-7 h-7 rounded-lg bg-gray-100 flex items-center justify-center text-xs font-bold hover:bg-gray-200">+</button>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            document.getElementById('cart-total-price').innerText = `$${total.toLocaleString()}`;
+        }
+
+        function changeQuantity(index, delta) {
+            const item = cart[index];
+            const product = products.find(p => p.id === item.id);
+            const maxStock = product && product.sizes[item.size] ? product.sizes[item.size].stock : 99;
+
+            const newQty = item.quantity + delta;
+            if (newQty > maxStock) {
+                alertCustom('No hay más stock disponible para este talle.');
+                return;
+            }
+
+            if (newQty > 0) {
+                item.quantity = newQty;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            renderCart();
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+
+            // Automatically decrease stock upon purchase
+            cart.forEach(cartItem => {
+                const prod = products.find(p => p.id === cartItem.id);
+                if (prod && prod.sizes[cartItem.size]) {
+                    prod.sizes[cartItem.size].stock = Math.max(0, prod.sizes[cartItem.size].stock - cartItem.quantity);
+                }
+            });
+            saveProducts();
+            renderCatalog();
+
+            let message = "Hola! Quiero realizar el siguiente pedido en Salva Lencería:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                message += `• ${item.quantity}x ${item.name} (Talle: ${item.size}) - $${(item.price * item.quantity).toLocaleString()}\n`;
+                total += item.price * item.quantity;
+            });
+            message += `\nTotal a abonar: $${total.toLocaleString()}\n¡Muchas gracias!`;
+
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/5492494240296?text=${encoded}`, '_blank');
+            
+            cart = [];
+            updateCartBadge();
+            closeCart();
+        }
+
+        function openAdminModal() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+            document.getElementById('admin-pass-input').value = '';
+        }
+
+        function closeAdminLoginModal() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('admin-pass-input').value;
+            if (pass === 'salva123') {
+                closeAdminLoginModal();
+                document.getElementById('admin-panel-modal').classList.remove('hidden');
+                renderAdminProducts();
+            } else {
+                alertCustom('Contraseña incorrecta. Probá nuevamente.');
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('admin-panel-modal').classList.add('hidden');
+            renderCatalog();
+        }
+
+        function toggleSizeInput(size) {
+            const input = document.getElementById(`stock-input-${size}`);
+            const checkbox = document.querySelector(`input.size-checkbox[value="${size}"]`);
+            if (input && checkbox) {
+                input.disabled = !checkbox.checked;
+            }
+        }
+
+        function handleAddProduct(event) {
+            event.preventDefault();
+            const formElement = event.target;
+            const name = document.getElementById('new-prod-name').value;
+            const category = document.getElementById('new-prod-cat').value;
+            const price = Number(document.getElementById('new-prod-price').value);
+            const desc = document.getElementById('new-prod-desc').value;
+            const fileInput = document.getElementById('new-prod-files');
+
+            const sizesConfig = {};
+            const possibleSizes = ['85', '90', '95', '100', '105', 'Único'];
+            possibleSizes.forEach(sz => {
+                const checkbox = document.querySelector(`input.size-checkbox[value="${sz}"]`);
+                if (checkbox && checkbox.checked) {
+                    const stockVal = Number(document.getElementById(`stock-input-${sz}`).value) || 0;
+                    sizesConfig[sz] = { available: true, stock: stockVal };
+                }
+            });
+
+            if (Object.keys(sizesConfig).length === 0) {
+                alertCustom('Por lo menos debés tildar y configurar un talle.');
+                return;
+            }
+
+            if (fileInput.files.length === 0) {
+                alertCustom('Seleccioná al menos una foto para el producto.');
+                return;
+            }
+
+            let loadedImagesCount = 0;
+            const imageUrls = [];
+            const files = Array.from(fileInput.files);
+
+            files.forEach((file) => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imageUrls.push(event.target.result);
+                    loadedImagesCount++;
+                    if (loadedImagesCount === files.length) {
+                        finalizeNewProduct(name, category, price, desc, imageUrls, sizesConfig, formElement);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function finalizeNewProduct(name, category, price, desc, images, sizes, formElement) {
+            const newProduct = {
+                id: Date.now(),
+                name,
+                category,
+                price,
+                desc,
+                images,
+                sizes
+            };
+
+            products.unshift(newProduct);
+            saveProducts();
+            renderCatalog();
+            renderAdminProducts();
+            if (formElement) {
+                formElement.reset();
+            }
+            alertCustom('¡Prenda publicada correctamente!');
+        }
+
+        function renderAdminProducts() {
+            const container = document.getElementById('admin-products-list');
+            container.innerHTML = '';
+
+            if (products.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">No hay productos cargados.</p>`;
+                return;
+            }
+
+            products.forEach((prod) => {
+                let sizesStockHtml = '';
+                for (let sz in prod.sizes) {
+                    sizesStockHtml += `
+                        <div class="flex items-center justify-between text-xs bg-gray-50 px-2.5 py-1.5 rounded-lg border border-gray-200 mt-1">
+                            <span>Talle <strong>${sz}</strong>: Stock</span>
+                            <div class="flex items-center gap-1.5">
+                                <input type="number" id="admin-stock-${prod.id}-${sz}" min="0" value="${prod.sizes[sz].stock}" class="w-14 px-2 py-0.5 text-xs border rounded text-center font-bold">
+                                <button onclick="updateExistingProductStock(${prod.id}, '${sz}')" class="bg-brand-dark hover:bg-brand-accent text-white px-2 py-0.5 rounded text-[10px]">Guardar</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const div = document.createElement('div');
+                div.className = "bg-white p-4 rounded-xl border border-gray-200 flex flex-col gap-3 shadow-sm";
+                div.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <img src="${prod.images[0]}" alt="${prod.name}" class="w-12 h-12 object-cover rounded-lg bg-brand-light">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-sm text-gray-900 font-serif">${prod.name}</h4>
+                            <p class="text-xs text-gray-500">$${prod.price.toLocaleString()} • <span class="capitalize">${prod.category}</span></p>
+                        </div>
+                        <button onclick="promptDeleteProduct(${prod.id})" class="text-red-500 hover:text-red-700 p-2 text-sm" title="Eliminar producto">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="border-t border-gray-100 pt-2">
+                        <p class="text-[11px] font-bold text-gray-700 mb-1">Stock por Talle:</p>
+                        ${sizesStockHtml}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateExistingProductStock(productId, size) {
+            const product = products.find(p => p.id === productId);
+            const inputVal = Number(document.getElementById(`admin-stock-${productId}-${size}`).value);
+            if (product && product.sizes[size]) {
+                product.sizes[size].stock = Math.max(0, inputVal);
+                saveProducts();
+                renderAdminProducts();
+                renderCatalog();
+                alertCustom('¡Stock actualizado con éxito!');
+            }
+        }
+
+        function promptDeleteProduct(productId) {
+            pendingDeleteId = productId;
+            document.getElementById('confirm-modal').classList.remove('hidden');
+            document.getElementById('confirm-modal-yes-btn').onclick = function() {
+                executeDeleteProduct(pendingDeleteId);
+            };
+        }
+
+        function closeConfirmModal() {
+            pendingDeleteId = null;
+            document.getElementById('confirm-modal').classList.add('hidden');
+        }
+
+        function executeDeleteProduct(productId) {
+            products = products.filter(p => p.id !== productId);
+            saveProducts();
+            renderCatalog();
+            renderAdminProducts();
+            closeConfirmModal();
+            alertCustom('Prenda eliminada correctamente.');
+        }
+
+        function alertCustom(message) {
+            const alertBox = document.createElement('div');
+            alertBox.className = "fixed bottom-5 right-5 z-50 bg-gray-900 text-white text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-bounce";
+            alertBox.innerHTML = `<i class="fa-solid fa-circle-info text-brand text-sm"></i> <span>${message}</span>`;
+            document.body.appendChild(alertBox);
+            setTimeout(() => alertBox.remove(), 3500);
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderCatalog();
+        };
+    </script>
+</body>
+</html>
